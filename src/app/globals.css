@@ -9,4 +9,15 @@
   .displays2{
     @apply flex items-center gap-3 hover:bg-slate-300 p-2 
   }
+
+  .itemscat{
+    @apply grid place-items-center gap-2 cursor-pointer
+  }
+  .footersty{
+    @apply flex gap-2 items-center
+  }
+}
+
+body::-webkit-scrollbar{
+  display: none;
 }

@@ -1,0 +1,20 @@
+{
+  "Banners": [
+    {
+      "id": 1,
+      "url": "/images/banner/flipkart_sale_banner1.webp"
+    },
+    {
+      "id": 2,
+      "url": "/images/banner/banner 2.jpeg"
+    },
+    {
+      "id": 3,
+      "url": "/images/banner/banner 3.png"
+    },
+    {
+      "id": 4,
+      "url": "/images/banner/banner 4.jpg"
+    }
+  ]
+}

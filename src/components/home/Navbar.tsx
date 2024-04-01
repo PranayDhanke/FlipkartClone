@@ -15,11 +15,11 @@ import { GoBell, GoDownload } from "react-icons/go";
 import { FaArrowTrendUp } from "react-icons/fa6";
 const Navbar = () => {
   const [arrow, setarrow] = useState(true);
-  const [dots, setdots] = useState(true);
+  const [dots, setdots] = useState(false);
   return (
-    <div className="pt-4 pb-4 px-6 shadow-sm bg-white flex box-border items-center">
+    <div className="sticky pt-3 pb-4 px-6 bg-white flex box-border items-center">
       <Link href={"/"}>
-        <div className="logo cursor-pointer">
+        <div className="logo cursor-pointer sticky">
           <img
             src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
             width="160"
@@ -42,7 +42,7 @@ const Navbar = () => {
       </div>
 
       <div className=" relative z-0 flex items-center gap-10 mx-8 text-[17px] cursor-pointer ">
-        <Link href={"/"}>
+        <Link href={"/login"}>
           <div
             onMouseEnter={() => setarrow(false)}
             onMouseLeave={() => setarrow(true)}
@@ -67,7 +67,7 @@ const Navbar = () => {
           >
             <div className="flex items-center justify-between gap-5">
               <span>New Custmer?</span>
-              <Link href={"/"}>
+              <Link href={"/signin"}>
                 <span className="text-blue-400 font-bold">Sign UP</span>
               </Link>
             </div>

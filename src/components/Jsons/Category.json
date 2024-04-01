@@ -1,0 +1,68 @@
+{
+  "Categories": [
+    {
+      "id": 1,
+      "imageurl": "/images/category/Grostery.webp",
+      "text": "Grocery",
+      "arrow": "false",
+      "link":"/"
+    },
+    {
+      "id": 2,
+      "imageurl": "/images/category/mobiles.webp",
+      "text": "Mobile",
+      "arrow":"false",
+      "link":"/"
+    },
+    {
+      "id": 3,
+      "imageurl": "/images/category/fashion.webp",
+      "text": "Fashion",
+      "arrow": "true",
+      "link":"/"
+    },
+    {
+      "id": 4,
+      "imageurl": "/images/category/electronics.webp",
+      "text": "Electronics",
+      "arrow": "true",
+      "link":"/"
+    },
+    {
+      "id": 5,
+      "imageurl": "/images/category/house and furniture.webp",
+      "text": "Home & Furniture",
+      "arrow": "true",
+      "link":"/"
+    },
+    {
+      "id": 6,
+      "imageurl": "/images/category/appliences.webp",
+      "text": "Appliences",
+      "arrow":"false",
+      "link":"/"
+    },
+    {
+      "id": 7,
+      "imageurl": "/images/category/travel.webp",
+      "text": "Travel",
+      "arrow":"false",
+      "link":"/"
+    },
+    {
+      "id": 8,
+      "imageurl": "/images/category/beauty toys and more.webp",
+      "text": "Beauty, Toys & More",
+      "arrow": "true",
+      "link":"/"
+    },
+    {
+      "id": 9,
+      "imageurl": "/images/category/bikes.webp",
+      "text": "Two Whillers",
+      "arrow":"true",
+      "link":"/"
+    }
+  ]
+}
+
