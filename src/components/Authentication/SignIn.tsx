@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import Navbar from "../home/Navbar";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,9 +7,37 @@ import Logo from "../../../public/images/flipkart icons.png";
 import { FcGoogle } from "react-icons/fc";
 import Footer from "../home/Footer";
 
+import { fireauth } from "@/databases/firebase/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth/web-extension";
+import { ToastContainer, toast } from "react-toastify";
+import { GoogleAuthProvider, signInWithPopup  } from "firebase/auth";
+
 const SignIn = () => {
+    const [email , setemail] = useState('');
+    const [Password , setpassword] = useState('');
+
+    const handlesignin = (e) => {
+        e.preventDefault();
+        createUserWithEmailAndPassword(fireauth , email , Password).then(()=>{
+            toast.success("Sign in success")
+        }).catch(()=>{
+            toast.error("Something went wrong")
+        })
+    }
+
+    const handglogin = () => {
+       
+         signInWithPopup(fireauth , new GoogleAuthProvider()
+            ).then(()=>{
+            toast.success("Sign In success")
+         }).catch(()=>{
+            toast.error("Something went wrong")
+         })
+    }
+
   return (
     <div>
+        <ToastContainer />
       <Navbar />
       <div className="flex w-full mt-10 ml-[20%]">
         <div className="bg-blue-600 text-white p-10 pt-12">
@@ -20,9 +49,11 @@ const SignIn = () => {
           <Image src={Logo} alt="" className="w-32 mt-52  ml-16"></Image>
         </div>
         <div className="bg-white p-10 grid text-center pt-20">
-          <input
+          <form onSubmit={handlesignin} className="grid">
+            <input
             placeholder="Email"
             type="email"
+            onChange={e=>setemail(e.target.value)}
             required
             className="w-full border-b-2 pb-2 border-gray-300  outline-none"
           />
@@ -30,6 +61,7 @@ const SignIn = () => {
           <input
             placeholder="Password"
             type="text"
+            onChange={e=>setpassword(e.target.value)}
             required
             className="w-full border-b-2 pb-2 border-gray-300  outline-none"
           />
@@ -48,11 +80,12 @@ const SignIn = () => {
             .
           </span>
           <br />
-          <button className="bg-orange-500 text-white p-3 text-xl">
+          <button type="submit" className="bg-orange-500 text-white p-3 text-xl">
             Sign In
           </button>
+          </form>
           <br />
-          <div
+          <div onClick={handglogin}
             className="flex items-center  gap-5 mt-6 ml-2 border
            border-black p-3 rounded-full hover:bg-orange-300 cursor-pointer
             hover:text-white hover:border-none "
