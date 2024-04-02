@@ -10,24 +10,29 @@ import { signInWithEmailAndPassword } from "firebase/auth/web-extension";
 import { fireauth } from "@/databases/firebase/firebase";
 import { ToastContainer, toast } from "react-toastify";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 const Login = () => { 
 
   const [email , setemail ] = useState('')
   const [Password , setpassword] = useState('')
 
+  const router = useRouter();
+
   const handlelogin = (e) => {
       e.preventDefault();
       signInWithEmailAndPassword(fireauth , email , Password).then(()=>{
-        toast.success("Login Success")
-      }).catch(()=>{
-        toast.error("Something went wrong")
+        toast.success("Login Success");
+        router.push("/")
+      }).catch((error)=>{
+        toast.error(error.message)
       })
   }
 
   const handleglogin = () => {
     signInWithPopup(fireauth , new GoogleAuthProvider()).then(()=>{
       toast.success("Login Success")
+      router.push("/")
     }).catch(()=>{
       toast.error("Something went wrong")
     })

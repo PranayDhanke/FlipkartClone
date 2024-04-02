@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import Navbar from "../home/Navbar";
 import Link from "next/link";
@@ -10,34 +10,41 @@ import Footer from "../home/Footer";
 import { fireauth } from "@/databases/firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth/web-extension";
 import { ToastContainer, toast } from "react-toastify";
-import { GoogleAuthProvider, signInWithPopup  } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
-    const [email , setemail] = useState('');
-    const [Password , setpassword] = useState('');
+  const [email, setemail] = useState("");
+  const [Password, setpassword] = useState("");
 
-    const handlesignin = (e) => {
-        e.preventDefault();
-        createUserWithEmailAndPassword(fireauth , email , Password).then(()=>{
-            toast.success("Sign in success")
-        }).catch(()=>{
-            toast.error("Something went wrong")
-        })
-    }
+  const router = useRouter();
 
-    const handglogin = () => {
-       
-         signInWithPopup(fireauth , new GoogleAuthProvider()
-            ).then(()=>{
-            toast.success("Sign In success")
-         }).catch(()=>{
-            toast.error("Something went wrong")
-         })
-    }
+  const handlesignin = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(fireauth, email, Password)
+      .then(() => {
+        toast.success("Sign in success");
+        router.push("/");
+      })
+      .catch(() => {
+        toast.error("Something went wrong");
+      });
+  };
+
+  const handglogin = () => {
+    signInWithPopup(fireauth, new GoogleAuthProvider())
+      .then(() => {
+        toast.success("Sign In success");
+        router.push("/");
+      })
+      .catch(() => {
+        toast.error("Something went wrong");
+      });
+  };
 
   return (
     <div>
-        <ToastContainer />
+      <ToastContainer />
       <Navbar />
       <div className="flex w-full mt-10 ml-[20%]">
         <div className="bg-blue-600 text-white p-10 pt-12">
@@ -51,41 +58,45 @@ const SignIn = () => {
         <div className="bg-white p-10 grid text-center pt-20">
           <form onSubmit={handlesignin} className="grid">
             <input
-            placeholder="Email"
-            type="email"
-            onChange={e=>setemail(e.target.value)}
-            required
-            className="w-full border-b-2 pb-2 border-gray-300  outline-none"
-          />
-          <br />
-          <input
-            placeholder="Password"
-            type="text"
-            onChange={e=>setpassword(e.target.value)}
-            required
-            className="w-full border-b-2 pb-2 border-gray-300  outline-none"
-          />
-          <span className="flex float-end mt-4 text-blue-700 cursor-pointer text-xs tracking-wide">
-            Forgot Password ?
-          </span>
-          <br />
-          <span className="text-[13px] text-gray-400  tracking-wide">
-            By continuing, you agree to Flipkart's{" "}
-            <span className="text-blue-700 cursor-pointer">Terms of Use</span>{" "}
-            and
-            <span className="text-blue-700 cursor-pointer">
-              {" "}
-              Privacy Policy
+              placeholder="Email"
+              type="email"
+              onChange={(e) => setemail(e.target.value)}
+              required
+              className="w-full border-b-2 pb-2 border-gray-300  outline-none"
+            />
+            <br />
+            <input
+              placeholder="Password"
+              type="text"
+              onChange={(e) => setpassword(e.target.value)}
+              required
+              className="w-full border-b-2 pb-2 border-gray-300  outline-none"
+            />
+            <span className="flex float-end mt-4 text-blue-700 cursor-pointer text-xs tracking-wide">
+              Forgot Password ?
             </span>
-            .
-          </span>
-          <br />
-          <button type="submit" className="bg-orange-500 text-white p-3 text-xl">
-            Sign In
-          </button>
+            <br />
+            <span className="text-[13px] text-gray-400  tracking-wide">
+              By continuing, you agree to Flipkart's{" "}
+              <span className="text-blue-700 cursor-pointer">Terms of Use</span>{" "}
+              and
+              <span className="text-blue-700 cursor-pointer">
+                {" "}
+                Privacy Policy
+              </span>
+              .
+            </span>
+            <br />
+            <button
+              type="submit"
+              className="bg-orange-500 text-white p-3 text-xl"
+            >
+              Sign In
+            </button>
           </form>
           <br />
-          <div onClick={handglogin}
+          <div
+            onClick={handglogin}
             className="flex items-center  gap-5 mt-6 ml-2 border
            border-black p-3 rounded-full hover:bg-orange-300 cursor-pointer
             hover:text-white hover:border-none "
